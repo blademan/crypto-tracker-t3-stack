@@ -37,7 +37,7 @@ const Layout = ({ children, title = "Crypto Tracker" }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex min-h-screen flex-col items-center  bg-slate-900 p-10">
+      <main className="flex min-h-screen flex-col items-center  bg-slate-900 p-5 md:p-10">
         <header className="header">
           <Link href="/" passHref>
             <h1 className="mb-10 text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">

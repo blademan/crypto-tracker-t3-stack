@@ -7,6 +7,7 @@ const Home = ({ filteredCoins }) => {
 
   const searchHandler = (e) => {
     e.preventDefault();
+
     setSearch(e.target.value.toLowerCase());
   };
 

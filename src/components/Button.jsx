@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Button = ({ title = "Favorite" }) => {
+const Button = ({ title = "Show Favorite" }) => {
   return (
     <Link
       href="/"
