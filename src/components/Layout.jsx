@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-
+import Search from "./Search";
 const Layout = ({ children, title = "Crypto Tracker" }) => {
   return (
     <>
@@ -45,6 +45,7 @@ const Layout = ({ children, title = "Crypto Tracker" }) => {
               App
             </h1>
           </Link>
+          <Search/>
         </header>
         {children}
       </main>
