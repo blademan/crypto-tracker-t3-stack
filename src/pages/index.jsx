@@ -1,11 +1,30 @@
+import { useState } from "react";
 import Card from "../components/Card";
 import ProgressBar from "../components/ProgressBar";
+import Search from "../components/Search";
 const Home = ({ filteredCoins }) => {
+  const [search, setSearch] = useState("");
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value.toLowerCase());
+  };
+
+  const allCoins = filteredCoins.filter((coin) => {
+    if (
+      coin.name.toLowerCase().includes(search) ||
+      coin.symbol.toLowerCase().includes(search)
+    ) {
+      return coin;
+    }
+  });
+
   return (
     <>
       <ProgressBar />
+      <Search onChange={searchHandler} />
       <ul className="flex w-full flex-col gap-3">
-        {filteredCoins.map((coin) => (
+        {allCoins.map((coin) => (
           <Card key={coin.name} {...coin} />
         ))}
       </ul>

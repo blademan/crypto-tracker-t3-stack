@@ -1,6 +1,6 @@
-const Search = () => {
+const Search = ({ onChange }) => {
   return (
-    <div className=" mb-5 flex flex-col justify-center bg-transparent">
+    <div className=" mb-5 flex w-full flex-col justify-center bg-transparent">
       <div className="relative w-full sm:mx-auto sm:max-w-2xl">
         <div className="relative z-0 overflow-hidden rounded-full p-3">
           <form
@@ -8,6 +8,7 @@ const Search = () => {
             className="relative z-50 flex rounded-full bg-slate-900"
           >
             <input
+              onChange={onChange}
               type="text"
               placeholder="enter your search here"
               className="flex-1 rounded-full bg-slate-900 px-6 py-4 text-gray-700 focus:outline-none"

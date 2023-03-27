@@ -3,7 +3,7 @@ import Link from "next/link";
 const Button = ({ title = "Favorite" }) => {
   return (
     <Link
-      href="#_"
+      href="/"
       className="group fixed  bottom-0 left-0 inline-flex h-1 w-full items-center justify-center overflow-hidden rounded-md px-6 py-5 font-bold text-white shadow-2xl"
     >
       <span className="absolute inset-0 h-full w-full bg-gradient-to-br from-pink-600 via-purple-700 to-blue-400 opacity-0 transition duration-300 ease-out group-hover:opacity-100"></span>
