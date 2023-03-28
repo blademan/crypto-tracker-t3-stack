@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
+
 const ScrollProgress = () => {
   const [percent, setPercent] = useState(0);
   const circumferenceRef = useRef(30 * 2 * Math.PI);
@@ -19,18 +20,21 @@ const ScrollProgress = () => {
       window.removeEventListener("scroll", calculateScrollPercentage);
     };
   }, []);
+
   const circumference = circumferenceRef.current || 1;
+  const strokeOffset = isNaN(percent)
+    ? circumference
+    : circumference - (percent / 100) * circumference;
+
   return (
     <div>
       <Button />
-
       <div className="fixed bottom-0 left-0 h-1 w-full bg-gray-200">
         <div
           className="h-full bg-gradient-to-r from-blue-500 to-purple-600"
           style={{ width: `${percent}%` }}
         />
       </div>
-
       <div
         className="fixed bottom-5 right-5 inline-flex items-center justify-center overflow-hidden rounded-full bg-slate-800/90"
         style={{ width: "80px", height: "80px" }}
@@ -49,7 +53,7 @@ const ScrollProgress = () => {
             className="text-purple-500"
             strokeWidth="5"
             strokeDasharray={circumference}
-            strokeDashoffset={circumference - (percent / 100) * circumference}
+            strokeDashoffset={strokeOffset}
             strokeLinecap="round"
             stroke="currentColor"
             fill="transparent"
@@ -58,7 +62,9 @@ const ScrollProgress = () => {
             cy="40"
           />
         </svg>
-        <span className="absolute text-xl text-purple-500">{`${percent}%`}</span>
+        <span className="absolute text-xl text-purple-500">{`${
+          percent ? percent : 0
+        }%`}</span>
       </div>
     </div>
   );

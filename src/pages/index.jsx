@@ -9,6 +9,12 @@ const Home = ({ filteredCoins }) => {
   const searchHandler = (e) => {
     e.preventDefault();
 
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => {
+      card.classList.remove("hidden");
+    });
+    localStorage.removeItem("isFavorite");
+
     setSearch(e.target.value.toLowerCase());
   };
 
