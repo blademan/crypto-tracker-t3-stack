@@ -9,7 +9,6 @@ const Button = ({ title = "Show Favorite" }) => {
     setIsFavorite(newIsFavorite);
     const cards = document.querySelectorAll(".card");
     if (newIsFavorite) {
-      console.log("isFavorite");
       cards.forEach((card) => {
         if (!card.classList.contains("favorite")) {
           card.classList.toggle("hidden");
