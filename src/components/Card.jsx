@@ -11,9 +11,7 @@ const Card = ({
   market_cap_change_percentage_24h: perCent,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  // If i click on card add coin to favorites
-  // If i click on card again remove coin from favorites
-  // If i click on card again add coin to favorites
+
   useEffect(() => {
     const coin = JSON.parse(localStorage.getItem(name));
     if (coin) {
@@ -21,15 +19,12 @@ const Card = ({
     }
   }, []);
 
+  const cardClass = isFavorite ? "favorite" : "";
+
   const addToFavorite = (e) => {
     e.preventDefault();
-
     const coin = {
       name,
-      symbol,
-      image,
-      current_price,
-      perCent,
       isFavorite: true,
     };
     const coinString = JSON.stringify(coin);
@@ -55,7 +50,7 @@ const Card = ({
   return (
     <li
       onClick={toggleFavorite}
-      className="flex w-full cursor-pointer items-center justify-between gap-5 rounded-md bg-slate-800 from-indigo-500 via-blue-800 to-purple-800 p-3 text-gray-300 ring-1 ring-purple-500   hover:bg-gradient-to-r md:px-5 md:py-3"
+      className={`card flex w-full cursor-pointer items-center justify-between gap-5 rounded-md bg-slate-800 from-indigo-500 via-blue-800 to-purple-800 p-3 text-gray-300 ring-1 ring-purple-500   hover:bg-gradient-to-r md:px-5 md:py-3 ${cardClass}`}
     >
       {isFavorite && <img src={icon.src} />}
       <div className="flex w-28 items-center gap-2">
