@@ -58,7 +58,17 @@ export const getServerSideProps = async () => {
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
       { cache: "force-cache" } // Use cache option to specify cache policy
     );
-    coins = await res.json();
+
+    try {
+      coins = await res.json();
+    } catch (error) {
+      // return spinner
+      return {
+        props: {
+          filteredCoins: null,
+        },
+      };
+    }
 
     // Save the response to cache
     if (cache) {

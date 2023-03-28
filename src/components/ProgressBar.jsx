@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 const ScrollProgress = () => {
   const [percent, setPercent] = useState(0);
-  const circumference = 30 * 2 * Math.PI;
+  const circumferenceRef = useRef(30 * 2 * Math.PI);
 
   const calculateScrollPercentage = () => {
     const winScroll =
@@ -19,7 +19,7 @@ const ScrollProgress = () => {
       window.removeEventListener("scroll", calculateScrollPercentage);
     };
   }, []);
-
+  const circumference = circumferenceRef.current || 1;
   return (
     <div>
       <Button />
