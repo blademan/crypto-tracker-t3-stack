@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Button = ({ title = "Show Favorite" }) => {
+const Button = () => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleFavorite = () => {
@@ -15,7 +15,7 @@ const Button = ({ title = "Show Favorite" }) => {
         }
       });
       //add state in local storage to save the state of the button
-      localStorage.setItem("isFavorite", true);
+      localStorage.setItem("isFavorite", "true");
     } else {
       cards.forEach((card) => {
         card.classList.remove("hidden");
@@ -26,9 +26,13 @@ const Button = ({ title = "Show Favorite" }) => {
   };
 
   useEffect(() => {
-    //get state from local
-    console.log("useEffect");
-    const isFavorite = localStorage.getItem("isFavorite");
+    //get state from local storage on component mount
+    const savedIsFavorite = localStorage.getItem("isFavorite");
+    setIsFavorite(savedIsFavorite === "true");
+  }, []);
+
+  useEffect(() => {
+    //update state and local storage when isFavorite changes
     if (isFavorite) {
       const cards = document.querySelectorAll(".card");
 
@@ -37,8 +41,16 @@ const Button = ({ title = "Show Favorite" }) => {
           card.classList.add("hidden");
         }
       });
+      localStorage.setItem("isFavorite", "true");
+    } else {
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach((card) => {
+        card.classList.remove("hidden");
+      });
+      localStorage.removeItem("isFavorite");
     }
-  }, []);
+  }, [isFavorite]);
 
   return (
     <Link
@@ -57,7 +69,9 @@ const Button = ({ title = "Show Favorite" }) => {
       <span className="absolute bottom-0 right-0 h-full w-4 bg-gradient-to-l from-white to-transparent opacity-5"></span>
       <span className="absolute inset-0 h-full w-full rounded-md border border-white opacity-10"></span>
       <span className="absolute h-0 w-0 rounded-full bg-white opacity-5 transition-all duration-300 ease-out group-hover:h-56 group-hover:w-56"></span>
-      <span className="relative">{title}</span>
+      <span className="relative">
+        {isFavorite ? "Show All" : "Show My Favorite Coins"}
+      </span>
     </Link>
   );
 };
