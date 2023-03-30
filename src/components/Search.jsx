@@ -10,7 +10,7 @@ const Search = ({ onChange }) => {
             <input
               onChange={onChange}
               type="text"
-              placeholder="enter your search here"
+              placeholder="Find your coin"
               className="flex-1 rounded-full bg-slate-900 px-6 py-4 text-purple-400 focus:outline-none"
             />
           </div>
